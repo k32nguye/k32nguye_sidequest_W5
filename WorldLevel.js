@@ -46,8 +46,8 @@ class WorldLevel {
         textAlign(CENTER);
         fill(255);
         textSize(18);
-        let msg = s.message || "yay an orb";
-        text(msg, s.x, s.y - 40);
+        let msg = s.message || "an orb?";
+        text(msg, s.x, s.y - 35);
         pop();
       }
 
