@@ -30,6 +30,13 @@ class WorldLevel {
     noStroke();
     fill(170, 190, 210);
     for (const o of this.obstacles) rect(o.x, o.y, o.w, o.h, o.r ?? 0);
+
+    // Draw stars
+    noStroke();
+    for (const s of this.stars) {
+      fill(255, 255, 255, 80); // dim white
+      circle(s.x, s.y, 6); // small star
+    }
   }
 
   drawHUD(player, camX, camY) {

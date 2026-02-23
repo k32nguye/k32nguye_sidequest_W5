@@ -9,7 +9,7 @@ Move: WASD/Arrows
 Learning goals:
 - Extend the JSON-driven world to include camera parameters
 - Implement smooth camera follow using interpolation (lerp)
-- Separate camera behavior from player/world logic
+- Separate camera behaviour from player/world logic
 - Tune motion and feel using external data instead of hard-coded values
 - Maintain player visibility with soft camera clamping
 - Explore how small math changes affect “game feel”
