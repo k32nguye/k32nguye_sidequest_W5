@@ -31,7 +31,7 @@ class WorldLevel {
     fill(170, 190, 210);
     for (const o of this.obstacles) rect(o.x, o.y, o.w, o.h, o.r ?? 0);
 
-    // Draw stars with glow effect
+    // draw stars with glow effect
     noStroke();
     let camCenterX = camX + width / 2;
     let camCenterY = camY + height / 2;
@@ -59,14 +59,24 @@ class WorldLevel {
       // when camera is far -> star size = 25
       let size = map(d, 0, 300, 45, 25, true);
 
+      // pick a random color for each orb
+      let r = s.r ?? random(100, 255);
+      let g = s.g ?? random(100, 255);
+      let b = s.b ?? random(100, 255);
+
+      // store the color so it doesn't change every frame
+      s.r = r;
+      s.g = g;
+      s.b = b;
+
       // soft glow around star
       noStroke();
-      fill(255, 220, 180, alpha * 0.25);
+      fill(r, g, b, alpha * 0.25);
       circle(s.x, s.y, size * 2.5);
 
       // glow + orb drawing here // circle(s.x, s.y, size);
 
-      fill(255, 210, 80, alpha); // golden yellow colour
+      fill(r, g, b, alpha); // golden yellow colour
       circle(s.x, s.y, size); // medium star
     }
   }
