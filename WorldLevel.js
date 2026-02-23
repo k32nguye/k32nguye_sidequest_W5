@@ -1,3 +1,13 @@
+const GLOBAL_MESSAGES = [
+  "an orb?",
+  "hi there :)",
+  "another orb...",
+  "stay here for 3 seconds",
+  "go go go",
+  "please give me some space",
+  "how many orbs are there??",
+  "oh no i've been found",
+];
 class WorldLevel {
   constructor(json) {
     this.schemaVersion = json.schemaVersion ?? 1;
@@ -40,14 +50,18 @@ class WorldLevel {
       // distance from camera centre to star
       let d = dist(s.x, s.y, camCenterX, camCenterY);
 
-      // message
-      if (d < 90) {
+      // messages
+      if (d < 75) {
+        // choose a message once per orb
+        if (!s.finalmsg) {
+          s.finalmsg = random(GLOBAL_MESSAGES); // global pool
+        }
+
         push();
         textAlign(CENTER);
         fill(255);
         textSize(18);
-        let msg = s.message || "an orb?";
-        text(msg, s.x, s.y - 35);
+        text(s.finalmsg, s.x, s.y - 35);
         pop();
       }
 
@@ -58,6 +72,8 @@ class WorldLevel {
       // when camera is close -> star size = 45
       // when camera is far -> star size = 25
       let size = map(d, 0, 300, 45, 25, true);
+
+      let baseSize = s.size ?? size; // use JSON size or dynamic size
 
       // pick a random color for each orb
       let r = s.r ?? random(100, 255);
@@ -72,20 +88,19 @@ class WorldLevel {
       // soft glow around star
       noStroke();
       fill(r, g, b, alpha * 0.25);
-      circle(s.x, s.y, size * 2.5);
+      circle(s.x, s.y, baseSize * 2.5);
 
       // glow + orb drawing here // circle(s.x, s.y, size);
 
       fill(r, g, b, alpha); // golden yellow colour
-      circle(s.x, s.y, size); // medium star
+      circle(s.x, s.y, baseSize); // medium star
     }
   }
 
   drawHUD(player, camX, camY) {
     noStroke();
     fill(255);
-
-    // text("Example 4 — JSON world + smooth camera (lerp).", 12, 20);
+    text("Lost in Space 🛰️", width / 2, 35);
     textAlign(CENTER);
     text(
       "  Player: " +
@@ -97,7 +112,7 @@ class WorldLevel {
         "," +
         (camY | 0),
       width / 2,
-      25,
+      55,
     );
   }
 }
