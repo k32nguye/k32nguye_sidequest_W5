@@ -40,6 +40,17 @@ class WorldLevel {
       // distance from camera centre to star
       let d = dist(s.x, s.y, camCenterX, camCenterY);
 
+      // message
+      if (d < 90) {
+        push();
+        textAlign(CENTER);
+        fill(255);
+        textSize(18);
+        let msg = s.message || "yay an orb";
+        text(msg, s.x, s.y - 40);
+        pop();
+      }
+
       // brightness: closer = brighter // 0–300 px range: bright → dim
       let alpha = map(d, 0, 200, 255, 0, true);
 
@@ -53,7 +64,8 @@ class WorldLevel {
       fill(255, 220, 180, alpha * 0.25);
       circle(s.x, s.y, size * 2.5);
 
-      // draw actual star
+      // glow + orb drawing here // circle(s.x, s.y, size);
+
       fill(255, 210, 80, alpha); // golden yellow colour
       circle(s.x, s.y, size); // medium star
     }
@@ -61,12 +73,12 @@ class WorldLevel {
 
   drawHUD(player, camX, camY) {
     noStroke();
-    fill(20);
-    text("Example 4 — JSON world + smooth camera (lerp).", 12, 20);
+    fill(255);
+
+    // text("Example 4 — JSON world + smooth camera (lerp).", 12, 20);
+    textAlign(CENTER);
     text(
-      "camLerp(JSON): " +
-        this.camLerp +
-        "  Player: " +
+      "  Player: " +
         (player.x | 0) +
         "," +
         (player.y | 0) +
@@ -74,8 +86,8 @@ class WorldLevel {
         (camX | 0) +
         "," +
         (camY | 0),
-      12,
-      40,
+      width / 2,
+      25,
     );
   }
 }

@@ -75,6 +75,7 @@ function draw() {
 
   // soft vigentte
   noStroke();
+
   for (let i = 0; i < 10; i++) {
     fill(60, 40, 80, i * 0.4);
     rect(0, 0, width, height);

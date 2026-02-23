@@ -20,8 +20,22 @@ class Player {
   }
 
   draw() {
-    fill(50, 110, 255);
+    push();
+    translate(this.x, this.y);
+
+    // rotation speed
+    rotate(frameCount * 0.02);
+
+    // outer glow
     noStroke();
-    rect(this.x - 12, this.y - 12, 24, 24, 5);
+    fill(180, 200, 255, 60);
+    rectMode(CENTER);
+    rect(0, 0, 10, 50, 1);
+
+    // inner rotating shape
+    fill(220, 240, 255);
+    rect(0, 0, 22, 20, 4);
+
+    pop();
   }
 }
