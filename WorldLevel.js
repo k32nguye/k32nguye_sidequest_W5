@@ -23,7 +23,7 @@ class WorldLevel {
     fill(this.bg[0], this.bg[1], this.bg[2]);
     rect(0, 0, this.w, this.h);
 
-    stroke(245);
+    stroke(20, 20, 40);
     for (let x = 0; x <= this.w; x += this.gridStep) line(x, 0, x, this.h);
     for (let y = 0; y <= this.h; y += this.gridStep) line(0, y, this.w, y);
 
@@ -34,7 +34,7 @@ class WorldLevel {
     // Draw stars
     noStroke();
     for (const s of this.stars) {
-      fill(255, 255, 255, 80); // dim white
+      fill(255, 255, 255, 180); // dim white
       circle(s.x, s.y, 6); // small star
     }
   }
