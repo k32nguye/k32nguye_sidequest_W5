@@ -69,7 +69,7 @@ function draw() {
 
   push();
   translate(-camX, -camY);
-  level.drawWorld();
+  level.drawWorld(camX, camY);
   player.draw();
   pop();
 
