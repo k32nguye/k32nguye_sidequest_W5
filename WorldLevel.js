@@ -100,7 +100,7 @@ class WorldLevel {
   drawHUD(player, camX, camY) {
     noStroke();
     fill(255);
-    text("Lost in Space 🛰️", width / 2, 35);
+    text("Floating in Space 🛰️", width / 2, 35);
     textAlign(CENTER);
     text(
       "  Player: " +
